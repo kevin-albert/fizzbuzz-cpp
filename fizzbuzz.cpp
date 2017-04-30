@@ -1,12 +1,11 @@
 /**
- * C++ MPL implementation of fizzbuzz
+ * Compile-time implementation of fizzbuzz
  * @author Kevin Albert <54.kevinalbert@gmail.com>
  *
  * Unlicensed. Feel free to use and take credit for this code.
  */
 
 #include <iostream>
-
 
 //
 // Data types - ints and strings
@@ -34,7 +33,6 @@ constexpr char CharAt(char const(&c)[M]) noexcept { return c[N < M ? N : M-1]; }
 #define String(s) CharArray<\
     CharAt<0>(s), CharAt<1>(s), CharAt<2>(s), CharAt<3>(s), \
     CharAt<4>(s), CharAt<5>(s), CharAt<6>(s), CharAt<7>(s)>
-
 
 //
 // Arithmetic and logic
@@ -69,8 +67,6 @@ struct PrintLoopRec<Callback, N, N, I...> {
 template <template <int> class Callback, int N>
 using PrintLoop = PrintLoopRec<Callback, N+1, 2, 1>;
 
-
-
 //
 // The actual program
 //
@@ -86,10 +82,7 @@ using Compute = typename
       >::then
     >::then;
 
-
 int main(void) {
     // Evaluate the loop
     PrintLoop<Compute, 100>::go();
 }
-
-
